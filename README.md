@@ -34,3 +34,67 @@ A aplicação consiste em uma API RESTful completa com persistência de dados em
 1. Clone o repositório:
    ```bash
    git clone [https://github.com/SEU_USUARIO/api-gestao-livros.git](https://github.com/SEU_USUARIO/api-gestao-livros.git)
+
+   ## 🕵️ Guia Rápido de Testes (Insomnia)
+
+Para testar a API, certifique-se de que o servidor está rodando.
+**Base URL:** `http://127.0.0.1:3000`
+
+### Passo 1: Criar um Autor
+* **Método:** `POST`
+* **Rota:** `/autores`
+* **Body (JSON):**
+  ```json
+  {
+    "nome": "George Orwell",
+    "nacionalidade": "Britânico"
+  }
+
+### Passo 2: Criar um Livro
+* **Método:** `POST`
+* **Rota:** `/livros`
+* **Body (JSON):**
+  ```json
+    {
+    "titulo": "1984",
+    "anoPublicacao": 1949,
+    "genero": "Ficção",
+    "numPaginas": 328,
+    "autorId": "COLE_AQUI_O_ID_DO_AUTOR"
+    }
+⚠️ Importante: Copie o id do livro que será retornado.
+
+### Passo 3: Cadastrar Usuário
+* **Método:** `POST`
+* **Rota:** `/auth/registro`
+* **Body (JSON):**
+  ```json
+    {
+    "nomeCompleto": "Aluno Teste",
+    "email": "aluno@teste.com",
+    "senha": "123"
+    }
+
+### Passo 4: Fazer Login (Gerar Token)
+* **Método:** `POST`
+* **Rota:** `/auth/login`
+* **Body (JSON):**
+  ```json
+    {
+    "email": "aluno@teste.com",
+    "senha": "123"
+    }
+⚠️ Importante: Copie o código token que aparece na resposta. Ele é seu crachá de acesso.
+
+### Passo 5: Registrar Leitura (Rota Protegida)
+* **Método:** `POST`
+* **Rota:** `/leituras`
+* **Autenticação:** `Vá na aba Auth, selecione Bearer Token e cole o token do Passo 4`
+* **Body (JSON):**
+  ```json
+    {
+    "livroId": "COLE_AQUI_O_ID_DO_LIVRO",
+    "status": "lendo"
+    }
+
+Desenvolvido por **Adriano Nunes dos Santos**
